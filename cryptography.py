@@ -1,9 +1,9 @@
 """
 cryptography.py
-Author: <your name here>
-Credit: <list sources used, if any>
+Author: CuPyrtch
+Credit: None
 
-Assignment:
+Assignment: Cryptography
 
 Write and submit a program that encrypts and decrypts user data.
 

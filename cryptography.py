@@ -10,21 +10,33 @@ Write and submit a program that encrypts and decrypts user data.
 See the detailed requirements at https://github.com/HHS-IntroProgramming/Cryptography/blob/master/README.md
 """
 associations = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,:;'\"/\\<>(){}[]-=_+?!"
-encrypt = ""
-while encrypt != "q":
-    encrypt = input("Enter e to encrypt, d to decrypt, or q to quit: ")
-    if encrypt == "e":
+command = ""
+while command != "q":
+    command = input("Enter e to encrypt, d to decrypt, or q to quit: ")
+    output = ""
+    if command == "e":
         message = input("Message: ")
         key = input("Key: ")
         for i in range(0, len(message)):
-            index = associations.find(message[i])
-            print(message[i] + " " + str(index))
+            messageindex = associations.find(message[i])
+            keyindex = associations.find(key[i%len(key)])
+            index = (messageindex + keyindex)%len(associations)
+            """print(message[i] + " " + str(messageindex) + " " + key[i%len(key)] + " " + str(keyindex) + " " + str(index) + " " + str(associations[index]))"""
+            output = output + associations[index]
+        print(output)
         
-    elif encrypt == "d":
+    elif command == "d":
         message = input("Message: ")
-        key = input("Key: "
+        key = input("Key: ")
+        for i in range(0, len(message)):
+            messageindex = associations.find(message[i])
+            keyindex = associations.find(key[i%len(key)])
+            index = (messageindex - keyindex)%len(associations)
+            """print(message[i] + " " + str(messageindex) + " " + key[i%len(key)] + " " + str(keyindex) + " " + str(index) + " " + str(associations[index]))"""
+            output = output + associations[index]
+        print(output)
     
-    elif encrypt == "q":
+    elif command == "q":
         print("Goodbye!")
         
     else:
